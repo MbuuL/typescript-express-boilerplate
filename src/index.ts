@@ -2,7 +2,11 @@ import express, { json, urlencoded, Application } from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
+import { config } from 'dotenv'
 import * as routers from './Routers';
+import { MongoConnect } from './Services'
+config()
+MongoConnect()
 
 const app: Application = express();
 const port = process.env.PORT || 9999;
@@ -22,3 +26,5 @@ if (!!routers) {
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+export default app
