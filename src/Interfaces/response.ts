@@ -8,5 +8,5 @@ export interface ResponseError {
 export interface ResponseSuccess {
   code: number;
   status: string;
-  data: {[key: string]: any} | Array<string | number | {[key: string]: any}> | string;
+  data?: {[key: string]: any} | Array<string | number | {[key: string]: any}> | string;
 }
