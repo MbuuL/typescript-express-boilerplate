@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { JSONSchemaType } from 'ajv'
-import { getLorem, register, login } from '../Controllers';
-import { baseResponse, validator } from '../Middlewares'
+import { getLorem, register, login, me } from '../Controllers';
+import { baseResponse, validator, validateAuth } from '../Middlewares'
 
 const v2 = Router();
 interface Auth {
@@ -23,5 +23,6 @@ const schema: JSONSchemaType<Auth> = {
 v2.get('/lorem', getLorem);
 v2.post('/register', baseResponse, validator(schema), register)
 v2.post('/login', baseResponse, validator(schema), login)
+v2.get('/me', baseResponse, validateAuth, me)
 
 export { v2 };
